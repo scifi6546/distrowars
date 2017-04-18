@@ -1,3 +1,3 @@
 .git
-player.pyc
-distro.pyc
+*.pyc
+*.swp
