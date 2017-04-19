@@ -14,10 +14,11 @@ class cligui:
              self.startup(total)
          return [stability,community,bleedingedge]
      def turnbanner(self, stability,community,bleedingedge):
-         print("stability: %f" % (stability))
-         print("community: %f" % (community))
-         print("bleedingedge: %f" % (bleedingedge))
+         self.out = "stability: %f " % (stability)
+         self.out += "| community: %f " % (community)
+         self.out += "| bleedingedge: %f " % (bleedingedge)
      def turn(self,spend):
+         self.printout()
          print("you have %f to spend" % (spend))
          out = ""
          choice = input("you can spend it on 1. stability, 2. community, 3. bleedingedge\n")
@@ -28,3 +29,5 @@ class cligui:
          if(choice == "3"):
              out = "bleedingedge"
          return out
+     def printout(self):
+         print(self.out)
