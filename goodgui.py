@@ -10,10 +10,22 @@ class ggui:
         curses.noecho()
         self.window.keypad(True)
     def startup(self,total):
-        self.window.addstr(1,0,"you have %f to spend in total how much do you want to spend on stability?" % (total)) 
+        tempstr = "you have %f to spend in total how much do you want to spend on stability?" % (total)
+        self.window.addstr(1,0,tempstr) 
         self.window.refresh()
-        stability = self.userinput(2,0)
-        return [1,1,1]
+        stability = float(self.userinput(2,0))
+        self.window.addstr(1,0,self.spaces(tempstr))
+        left = total - stability
+        tempstr = "you have %f to spend in total how much do you want to spend on community?" % (left)
+        self.window.addstr(1,0,tempstr)
+        community = float(self.userinput(2,0))
+        self.window.addstr(2,0,self.spaces(tempstr))  
+        left -= community
+        tempstr = "you have %f to spend in total how much do you want to spend on bleedingedge" % (left)
+        self.window.addstr(1,0,tempstr)
+        bleedingedte = float(self.userinput(2,0))
+        self.window.addstr(1,0,self.spaces(tempstr))
+        return [stabilitgy,community,bleedingedge]
     def turnbanner(self,stability,community,bleedingedge):
         a = 1+1
     def turn(self,spend):
@@ -46,3 +58,8 @@ class ggui:
                string+=char
                self.window.addstr(y,x,string)
                self.window.refresh()
+    def spaces(self,string):
+        outstring = ""
+        for i in range(1,len(string)):
+                outstring+=" "
+        return outstring
