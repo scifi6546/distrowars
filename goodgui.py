@@ -12,7 +12,7 @@ class ggui:
     def startup(self,total):
         self.window.addstr(1,0,"you have %f to spend in total how much do you want to spend on stability?" % (total)) 
         self.window.refresh()
-        self.userinput(2,0)
+        stability = self.userinput(2,0)
         return [1,1,1]
     def turnbanner(self,stability,community,bleedingedge):
         a = 1+1
@@ -28,11 +28,15 @@ class ggui:
         endloop = 0
         string = ""
         while(endloop == 0):
-           char = self.window.getkey() 
+           intchar = self.window.getch()
+           char = chr(intchar) 
            used = 0
-           if(char=='^?'):
+           if(intchar==127):
                length = len(string)
-               string = string[:length-10]
+               string = string[:length-1]
+               temp = string + " "
+               self.window.addstr(y,x,temp)
+               self.window.refresh()
                used = 1
            if(char=='\n'):
                endloop = 1
@@ -40,5 +44,5 @@ class ggui:
                return string
            if(used == 0):
                string+=char
-           self.window.addstr(y,x,string)
-           self.window.refresh()
+               self.window.addstr(y,x,string)
+               self.window.refresh()
