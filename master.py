@@ -1,12 +1,14 @@
 import player
 import gui
 import distro
+import goodgui
 class master:
     def startplayer(self):
         person = player.person()
     def __init__(self):
         total = 1.8
-        self.userin = gui.cligui()
+        # self.userin = gui.cligui()
+        self.userin = goodgui.ggui()
         [stability,community,bleedingedge] = self.userin.startup(total)
         self.playerdistro = distro.distrobution(stability,community,bleedingedge)
         # self.startplayer()
