@@ -1,8 +1,9 @@
 CC=g++
-LIBS=-lSDL2 -lGLEW  -lGL
+LIBS=-lncurses
 CFLAGS=-I -w -ggdb
-main: main.cpp game_engine.cpp
-	$(CC) $(CFLAGS) main.c -o main.o
+main: main.cpp
+	$(CC) $(CFLAGS) -c main.cpp -o main.o
+	$(MAKE) window
 	$(CC) $(CFLAGS) main.o window.o -o out $(LIBS)
 run:
 	$(MAKE) main
@@ -11,6 +12,6 @@ window: window.cpp
 	$(CC) -c $(CFLAGS) window.cpp -o window.o
 debug:
 	$(MAKE) main
-	optirun gdb out
+	gdb out
 all:
 	$(MAKE) main
